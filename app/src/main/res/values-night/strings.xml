@@ -1,10 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CryptoCurrency</string>
-    <string name="symbols_template">%s / %s</string>
-    <string name="last_update_template">Время последнего обновления: %s</string>
     <string name="price">Цена:</string>
     <string name="min_for_the_day">Минимум за день:</string>
-    <string name="max_for_the_day">Максимум за день:</string>
     <string name="last_deal">Последняя сделака:</string>
     <string name="last_update">Обновлено:</string>
     <string name="splash">/</string>
