@@ -1,8 +1,7 @@
 package com.vladimir.cryptocurrency.api
 
-import com.vladimir.cryptocurrency.pojo.CoinClassInfoData
+import com.vladimir.cryptocurrency.pojo.CoinPriceInfoRawData
 import com.vladimir.cryptocurrency.pojo.CoinInfoListOfData
-import com.vladimir.cryptocurrency.pojo.CoinPriceInfo
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,7 +23,7 @@ interface ApiService {
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY
 
-    ) : Single<CoinClassInfoData>
+    ) : Single<CoinPriceInfoRawData>
 
 
     companion object {
