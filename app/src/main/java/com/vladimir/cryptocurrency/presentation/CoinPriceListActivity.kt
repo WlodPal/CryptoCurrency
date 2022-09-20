@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.vladimir.cryptocurrency.R
 import com.vladimir.cryptocurrency.databinding.ActivityCoinPriceListBinding
 import com.vladimir.cryptocurrency.domain.CoinInfo
 import com.vladimir.cryptocurrency.presentation.adapters.CoinInfoAdapter
@@ -24,11 +25,12 @@ class CoinPriceListActivity : AppCompatActivity() {
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onCoinClick(coinInfo: CoinInfo) {
-                val intent = CoinDetailActivity.newIntent(
-                    this@CoinPriceListActivity,
-                    coinInfo.fromSymbol
-                )
-                startActivity(intent)
+                if (isOnePaneMode()) {
+                    lunchDetailActivity(coinInfo.fromSymbol)
+                } else {
+                    lunchDetailFragment(coinInfo.fromSymbol)
+                }
+
             }
         }
         binding.rvCoinPriceList.adapter = adapter
@@ -36,6 +38,25 @@ class CoinPriceListActivity : AppCompatActivity() {
         viewModel.coinInfoList.observe(this, Observer {
             adapter.submitList(it)
         })
+    }
 
+    private fun isOnePaneMode() = binding.fragmentContainer == null
+
+    private fun lunchDetailActivity(fromSymbols: String) {
+        val intent = CoinDetailActivity.newIntent(
+            this@CoinPriceListActivity,
+            fromSymbols
+        )
+        startActivity(intent)
+    }
+
+
+    private fun lunchDetailFragment(fromSymbols: String) {
+        supportFragmentManager.popBackStack()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, CoinDetailFragment.newInstance(fromSymbols))
+            .addToBackStack(null)
+            .commit()
     }
 }

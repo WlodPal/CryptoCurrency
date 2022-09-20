@@ -44,7 +44,6 @@ class CoinDetailFragment : Fragment() {
                 Picasso.get().load(it.imageUrl).into(ivLogoCoin)
             }
         })
-
     }
 
 
