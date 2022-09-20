@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CoinDetailActivity">
+    tools:context=".presentation.CoinDetailActivity">
 
     <ImageView
         android:id="@+id/ivLogoCoin"
@@ -32,12 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:textSize="24sp"
         android:text="@string/splash"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivLogoCoin"
-         />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoCoin" />
 
     <TextView
         android:id="@+id/tvToSymbols"
@@ -103,14 +102,13 @@
         android:id="@+id/tvMinForTheDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tvMinString"
-        app:layout_constraintTop_toBottomOf="@id/tvFullPrice"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:textSize="20sp"
         android:textColor="@android:color/holo_red_dark"
-        tools:text="1111.54"
-        />
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/tvMinString"
+        app:layout_constraintTop_toBottomOf="@id/tvFullPrice"
+        tools:text="1111.54" />
 
     <View
         android:layout_width="match_parent"
@@ -129,20 +127,19 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvMinString"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvMinString" />
 
     <TextView
         android:id="@+id/tvMaxForTheDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tvMaxString"
-        app:layout_constraintTop_toBottomOf="@id/tvMinForTheDay"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:textSize="20sp"
         android:textColor="@android:color/holo_green_dark"
-        tools:text="1013.74"/>
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/tvMaxString"
+        app:layout_constraintTop_toBottomOf="@id/tvMinForTheDay"
+        tools:text="1013.74" />
 
     <View
         android:layout_width="match_parent"
@@ -161,18 +158,18 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvMaxString"/>
+        app:layout_constraintTop_toBottomOf="@id/tvMaxString" />
 
     <TextView
         android:id="@+id/tvLastDeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tvLastDealString"
-        app:layout_constraintTop_toBottomOf="@id/tvMaxForTheDay"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:textSize="20sp"
-        tools:text="Bitfinex"/>
+        app:layout_constraintStart_toEndOf="@+id/tvLastDealString"
+        app:layout_constraintTop_toBottomOf="@id/tvMaxForTheDay"
+        tools:text="Bitfinex" />
 
     <View
         android:layout_width="match_parent"
@@ -191,18 +188,18 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLastDealString"/>
+        app:layout_constraintTop_toBottomOf="@id/tvLastDealString" />
 
     <TextView
         android:id="@+id/tvLastUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/tvLastUpdateString"
-        app:layout_constraintTop_toBottomOf="@id/tvLastDeal"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:textSize="20sp"
-        tools:text="14:35:00"/>
+        app:layout_constraintStart_toEndOf="@+id/tvLastUpdateString"
+        app:layout_constraintTop_toBottomOf="@id/tvLastDeal"
+        tools:text="14:35:00" />
 
     <View
         android:layout_width="match_parent"
@@ -210,13 +207,6 @@
         android:layout_marginTop="10dp"
         android:background="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/tvLastUpdateString" />
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

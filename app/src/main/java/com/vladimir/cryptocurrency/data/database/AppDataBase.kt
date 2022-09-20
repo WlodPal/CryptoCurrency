@@ -1,13 +1,16 @@
-package com.vladimir.cryptocurrency.dataBase
+package com.vladimir.cryptocurrency.data.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.vladimir.cryptocurrency.pojo.CoinPriceInfo
 
-@Database(entities = [CoinPriceInfo::class], version = 1, exportSchema = false)
+@Database(entities = [CoinInfoDbModel::class], version = 2, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
+
+    abstract fun coinPriceInfoDao(): CoinInfoDao
+
+
     companion object {
         private var db: AppDataBase? = null
         private const val DB_NAME = "main.db"
@@ -20,12 +23,12 @@ abstract class AppDataBase : RoomDatabase() {
                     context,
                     AppDataBase::class.java,
                     DB_NAME
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 db = instance
                 return instance
             }
         }
     }
-
-    abstract fun coinPriceInfoDao():CoinPriceInfoDao
 }

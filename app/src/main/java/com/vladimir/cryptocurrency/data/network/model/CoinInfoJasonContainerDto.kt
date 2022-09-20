@@ -1,12 +1,12 @@
-package com.vladimir.cryptocurrency.pojo
+package com.vladimir.cryptocurrency.data.network.model
 
 import com.google.gson.JsonObject
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class CoinPriceInfoRawData (
+data class CoinInfoJasonContainerDto (
     @SerializedName("RAW")
     @Expose
-    val coinPriceInfoJasonObject: JsonObject? = null
+    val json: JsonObject? = null
 
 )
