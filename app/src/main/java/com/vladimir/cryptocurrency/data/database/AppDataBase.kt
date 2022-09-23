@@ -10,7 +10,6 @@ abstract class AppDataBase : RoomDatabase() {
 
     abstract fun coinPriceInfoDao(): CoinInfoDao
 
-
     companion object {
         private var db: AppDataBase? = null
         private const val DB_NAME = "main.db"

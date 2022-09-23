@@ -24,9 +24,11 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getDetailInfo(fSym: String) = getCoinInfoUseCase(fSym)
 
+    private val _coinInfo = MutableLiveData<CoinInfo>()
+    val coinInfo: LiveData<CoinInfo>
+        get() = _coinInfo
+
     init {
-        viewModelScope.launch {
-            loadDataUseCase()
-        }
+        loadDataUseCase()
     }
 }
