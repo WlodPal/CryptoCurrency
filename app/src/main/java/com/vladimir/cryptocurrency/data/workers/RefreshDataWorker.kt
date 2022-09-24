@@ -2,20 +2,22 @@ package com.vladimir.cryptocurrency.data.workers
 
 import android.content.Context
 import androidx.work.*
+import com.vladimir.cryptocurrency.R
 import com.vladimir.cryptocurrency.data.database.AppDataBase
+import com.vladimir.cryptocurrency.data.database.CoinInfoDao
 import com.vladimir.cryptocurrency.data.mapper.CoinMapper
 import com.vladimir.cryptocurrency.data.network.ApiFactory
+import com.vladimir.cryptocurrency.data.network.ApiService
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
-class RefreshDataWorker(
+class RefreshDataWorker (
     context: Context,
-    workerParameters: WorkerParameters
+    workerParameters: WorkerParameters,
+    private val coinInfoDao: CoinInfoDao,
+    private val apiService: ApiService,
+    private val mapper: CoinMapper
 ): CoroutineWorker(context, workerParameters) {
-
-    private val coinInfoDao = AppDataBase.getInstance(context).coinPriceInfoDao()
-    private val apiService = ApiFactory.apiService
-
-    private val mapper = CoinMapper()
 
 
     override suspend fun doWork(): Result {
@@ -39,6 +41,26 @@ class RefreshDataWorker(
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
         }
+    }
+
+    class Factory @Inject constructor(
+        private val coinInfoDao: CoinInfoDao,
+        private val apiService: ApiService,
+        private val mapper: CoinMapper
+    ): ChildWorkerFactory {
+        override fun create(
+            context: Context,
+            workerParameters: WorkerParameters
+        ): ListenableWorker {
+            return RefreshDataWorker(
+                context,
+                workerParameters,
+                coinInfoDao,
+                apiService,
+                mapper
+            )
+        }
+
     }
 
 }
