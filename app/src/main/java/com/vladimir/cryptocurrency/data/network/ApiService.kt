@@ -1,29 +1,28 @@
-package com.vladimir.cryptocurrency.api
+package com.vladimir.cryptocurrency.data.network
 
-import com.vladimir.cryptocurrency.pojo.CoinPriceInfoRawData
-import com.vladimir.cryptocurrency.pojo.CoinInfoListOfData
-import io.reactivex.Single
+import com.vladimir.cryptocurrency.data.network.model.CoinNamesListDto
+import com.vladimir.cryptocurrency.data.network.model.CoinInfoJasonContainerDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("top/totalvolfull")
-    fun getTopCoinsInfo(
+    suspend fun getTopCoinsInfo(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String = CURRENCY
 
-    ) : Single<CoinInfoListOfData>
+    ) : CoinNamesListDto
 
 
     @GET("pricemultifull")
-    fun getFullPRiceList(
+    suspend fun getFullPRiceList(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String,
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY
 
-    ) : Single<CoinPriceInfoRawData>
+    ) : CoinInfoJasonContainerDto
 
 
     companion object {
